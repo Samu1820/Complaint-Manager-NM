@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from 'axios'; 
 import React, { useState } from 'react';
-import {Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Footer from './FooterC'
@@ -53,27 +53,30 @@ const Login = () => {
       <>
          <Navbar bg="dark" variant="dark">
             <Container>
-               <Navbar.Brand>ComplaintCare </Navbar.Brand>
+               <Navbar.Brand style={{ fontSize: '24px', color: '#FF6347' }}>ComplaintCare </Navbar.Brand>
                <ul className="navbar-nav">
                   <li className="nav-item mb-2">
                      <Link to={'/'}
                         className={`nav-link text-light `}
+                        style={{ fontSize: '18px', color: '#ADD8E6' }}
                      >
                         Home
                      </Link>
                   </li>
                   <li className="nav-item mb-2">
                      <Link
-                     to={'/signup'}
+                        to={'/signup'}
                         className={`nav-link text-light `}
+                        style={{ fontSize: '18px', color: '#ADD8E6' }}
                      >
                         SignUp
                      </Link>
                   </li>
                   <li className="nav-item mb-2">
                      <Link
-                     to={'/login'}
+                        to={'/login'}
                         className={`nav-link text-light `}
+                        style={{ fontSize: '18px', color: '#ADD8E6' }}
                      >
                         Login
                      </Link>
@@ -88,23 +91,40 @@ const Login = () => {
                      <div className="card bg-dark text-white">
                         <div className="card-body p-5 text-center">
                            <div className="mb-md-5 mt-md-4 pb-5">
-                              <h2 className="fw-bold mb-4">Login For Registering the Complaint</h2>
-                              <p className="text-white-50 mb-5">Please enter your Credentials!</p>
+                              <h2 className="fw-bold mb-4" style={{ fontSize: '28px', color: '#FFD700' }}>Login For Registering the Complaint</h2>
+                              <p className="text-white-50 mb-5" style={{ fontSize: '16px', color: '#B0E0E6' }}>Please enter your Credentials!</p>
                               <form onSubmit={handleSubmit}>
                                  <div className="form-outline form-white mb-4">
-                                    <input type="email" name="email" value={user.email} onChange={handleChange} className="form-control form-control-lg" required />
-                                    <label className="form-label" htmlFor="email">Email</label>
+                                    <input 
+                                       type="email" 
+                                       name="email" 
+                                       value={user.email} 
+                                       onChange={handleChange} 
+                                       className="form-control form-control-lg" 
+                                       required 
+                                       style={{ fontSize: '16px', color: '#00008B' }}
+                                    />
+                                    <label className="form-label" htmlFor="email" style={{ fontSize: '16px', color: '#ADD8E6' }}>Email</label>
                                  </div>
                                  <div className="form-outline form-white mb-4">
-                                    <input type="password" name="password" value={user.password} onChange={handleChange} className="form-control form-control-lg" autoComplete="off" required />
-                                    <label className="form-label" htmlFor="password">Password</label>
+                                    <input 
+                                       type="password" 
+                                       name="password" 
+                                       value={user.password} 
+                                       onChange={handleChange} 
+                                       className="form-control form-control-lg" 
+                                       autoComplete="off" 
+                                       required 
+                                       style={{ fontSize: '16px', color: '#00008B' }}
+                                    />
+                                    <label className="form-label" htmlFor="password" style={{ fontSize: '16px', color: '#ADD8E6' }}>Password</label>
                                  </div>
 
-                                 <button className="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                                 <button className="btn btn-outline-light btn-lg px-5" type="submit" style={{ fontSize: '18px', color: '#4682B4' }}>Login</button>
                               </form>
                            </div>
                            <div>
-                              <p className="mb-0">Don't have an account? <Link to="/SignUp">SignUp</Link></p>
+                              <p className="mb-0" style={{ fontSize: '14px', color: '#B0E0E6' }}>Don't have an account? <Link to="/SignUp" style={{ color: '#FFD700' }}>SignUp</Link></p>
                            </div>
                         </div>
                      </div>
@@ -118,3 +138,4 @@ const Login = () => {
 };
 
 export default Login;
+

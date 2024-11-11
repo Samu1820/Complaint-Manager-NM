@@ -8,11 +8,10 @@ import Collapse from 'react-bootstrap/Collapse';
 
 const Status = () => {
   const [toggle, setToggle] = useState({})
-
   const [statusCompliants, setStatusCompliants] = useState([]);
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    
     const { _id } = user;
     axios.get(`http://localhost:8000/status/${_id}`)
       .then((res) => {
@@ -21,7 +20,6 @@ const Status = () => {
       .catch((err) => {
         console.log(err);
       });
-
   }, []);
 
   const handleToggle = (complaintId) => {
@@ -29,7 +27,7 @@ const Status = () => {
        ...prevState,
        [complaintId]: !prevState[complaintId],
     }));
- };
+  };
 
   return (
     <>
@@ -40,19 +38,29 @@ const Status = () => {
             return (
               <Card key={index} style={{ width: '18.5rem', margin: '0 15px 15px 0' }}>
                 <Card.Body>
-                  <Card.Title>Name: {complaint.name}</Card.Title>
-                  <Card.Text>Address: {complaint.address}</Card.Text>
-                  <Card.Text>City: {complaint.city}</Card.Text>
-                  <Card.Text>State: {complaint.state}</Card.Text>
-                  <Card.Text>Pincode: {complaint.pincode}</Card.Text>
-                  <Card.Text>Comment: {complaint.comment}</Card.Text>
-                  <Card.Text>Status: {complaint.status}</Card.Text>
-                  <Button className='mb-2' style={{float: 'right'}} onClick={() => handleToggle(complaint._id)}
+                  <Card.Title style={{ fontSize: '20px', color: '#333' }}><b>Name:</b> {complaint.name}</Card.Title>
+                  <Card.Text style={{ fontSize: '16px', color: '#555' }}><b>Address:</b> {complaint.address}</Card.Text>
+                  <Card.Text style={{ fontSize: '16px', color: '#555' }}><b>City:</b> {complaint.city}</Card.Text>
+                  <Card.Text style={{ fontSize: '16px', color: '#555' }}><b>State:</b> {complaint.state}</Card.Text>
+                  <Card.Text style={{ fontSize: '16px', color: '#555' }}><b>Pincode:</b> {complaint.pincode}</Card.Text>
+                  <Card.Text style={{ fontSize: '16px', color: '#555' }}><b>Comment:</b> {complaint.comment}</Card.Text>
+                  <Card.Text style={{ fontSize: '16px', color: '#555' }}><b>Status:</b> {complaint.status}</Card.Text>
+                  <Button 
+                    className='mb-2' 
+                    style={{
+                      float: 'right', 
+                      fontSize: '14px', 
+                      backgroundColor: '#007bff', 
+                      borderColor: '#007bff'
+                    }} 
+                    onClick={() => handleToggle(complaint._id)}
                     aria-controls={`collapse-${complaint._id}`}
-                    aria-expanded={open} variant="primary">
+                    aria-expanded={open} 
+                    variant="primary"
+                  >
                     Message
                   </Button>
-                  <div style={{ minHeight: '100%'}}>
+                  <div style={{ minHeight: '100%' }}>
                     <Collapse in={open} dimension="width">
                       <div id="example-collapse-text">
                         <Card body style={{ width: '260px', marginTop: '12px' }}>
@@ -63,102 +71,17 @@ const Status = () => {
                   </div>
                 </Card.Body>
               </Card>
-            )
-
+            );
           })
         ) : (
           <Alert variant="info">
-            <Alert.Heading>No complaints to show</Alert.Heading>
+            <Alert.Heading style={{ fontSize: '20px', color: '#007bff' }}>No complaints to show</Alert.Heading>
           </Alert>
         )}
       </div>
-
-
-
     </>
-  )
+  );
 }
 
 export default Status;
 
-
-
-
-
-
-
-
-
-// import React, { useEffect, useState } from 'react'
-// const Status = () => {
-//   const [city, setCity] = useState('');
-//   const [state, setState] = useState('');
-//   const [complaint, setComplaint] = useState("")
-
-//   // useEffect(()=>{
-//   //   const id = localStorage.getItem("user")
-//   //   console.log(id)
-
-//   //     // axios.get(`http://localhost:8000/status${id}`)
-//   //     // .then((res)=>{
-//   //     //   const { city, state, complaint } = res.data;
-//   //     //   console.log(city,state,complaint)
-//   //     //   setState(state);
-//   //     //   setCity(city);
-//   //     //   setComplaint(complaint)
-//   //     // })
-//   //     // .catch((err)=>{
-//   //     //   console.log(err)
-//   //     // })
-//   // },[])
-//   useEffect(() => {
-//     const user = JSON.parse(localStorage.getItem('user'));
-//     const { _id } = user;
-//     console.log(_id);
-//     axios.get(`http://localhost:8000/status/${_id}`)
-//       .then((res) => {
-//         axios.get('http://localhost:8000/Complaint')
-//           .then((res) => {
-//             const { city, state, complaint } = res.data;
-//             console.log(city, state, complaint)
-//             setState(state);
-//             setCity(city);
-//             setComplaint(complaint)
-//           })
-//           .catch((err) => {
-//             console.log(err)
-//           })
-//       })
-//       .catch((err) => {
-//         console.log(err)
-//       })
-//   }, []);
-
-//   return (
-//     <>
-//       <div className="row">
-//         <div className="status col-sm-6 mb-sm-0">
-//           <div className="card status-card">
-//             <div className="card-body">
-//               <h5 className="card-title">City:{city}</h5>
-//               <p className="card-text">State:{state} </p>
-//               <p className="card-text">Complaint:{complaint} </p>
-
-//             </div>
-//           </div>
-//         </div>
-//         <div className="status col-sm-6 mb-sm-0">
-//           <div className="card status-card">
-//             <div className="card-body">
-//               <h5 className="card-title">h</h5>
-//               <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br />In, voluptatibus!</p>
-
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   )
-// }
-
-// export default Status

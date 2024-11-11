@@ -9,9 +9,10 @@ import Footer from './FooterC'
 const Home = () => {
    return (
       <>
-         <Navbar bg="dark" variant="dark">
+         {/* Change bg="dark" to bg="success" for a green background */}
+         <Navbar bg="success" variant="dark">
             <Container>
-               <Navbar.Brand>ComplaintCare </Navbar.Brand>
+               <Navbar.Brand>ComplaintCare</Navbar.Brand>
                <ul className="navbar-nav">
                   <li className="nav-item mb-2">
                      <Link to={'/'}
@@ -30,7 +31,7 @@ const Home = () => {
                   </li> */}
                   <li className="nav-item mb-2">
                      <Link
-                     to={'/signup'}
+                        to={'/signup'}
                         className={`nav-link text-light `}
                      >
                         SignUp
@@ -38,7 +39,7 @@ const Home = () => {
                   </li>
                   <li className="nav-item mb-2">
                      <Link
-                     to={'/login'}
+                        to={'/login'}
                         className={`nav-link text-light `}
                      >
                         Login
@@ -60,7 +61,7 @@ const Home = () => {
                </p>
             </div>
          </Container>
-         <Footer/>
+         <Footer />
       </>
    )
 }

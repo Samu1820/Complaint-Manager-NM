@@ -9,16 +9,16 @@ import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 import Collapse from 'react-bootstrap/Collapse';
 import ChatWindow from '../common/ChatWindow';
-import Footer from '../common/FooterC'
+import Footer from '../common/FooterC';
 
 const AgentHome = () => {
    const style = {
       marginTop: '66px',
-   }
+   };
 
    const navigate = useNavigate();
    const [userName, setUserName] = useState('');
-   const [toggle, setToggle] = useState({})
+   const [toggle, setToggle] = useState({});
    const [agentComplaintList, setAgentComplaintList] = useState([]);
 
    useEffect(() => {
@@ -72,17 +72,20 @@ const AgentHome = () => {
          <div className="body">
             <Navbar className="text-white" bg="dark" expand="lg">
                <Container fluid>
-                  <Navbar.Brand className="text-white">
+                  <Navbar.Brand className="text-white" style={{ fontSize: '20px', color: '#f1f1f1' }}>
                      Hi Agent {userName}
                   </Navbar.Brand>
                   <Navbar.Toggle aria-controls="navbarScroll" />
                   <Navbar.Collapse id="navbarScroll">
                      <Nav className="text-white me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-                        <NavLink style={{ textDecoration: 'none' }} className="text-white">
+                        <NavLink
+                           style={{ textDecoration: 'none', fontSize: '16px', color: '#f1f1f1' }}
+                           className="text-white"
+                        >
                            View Complaints
                         </NavLink>
                      </Nav>
-                     <Button onClick={LogOut} variant="outline-danger">
+                     <Button onClick={LogOut} variant="outline-danger" style={{ fontSize: '16px' }}>
                         Log out
                      </Button>
                   </Navbar.Collapse>
@@ -95,51 +98,76 @@ const AgentHome = () => {
                      return (
                         <Card key={index} style={{ width: '18rem', margin: '15px' }}>
                            <Card.Body>
-                              <Card.Title><b>Name:</b> {complaint.name}</Card.Title>
-                              <Card.Text><b>Address:</b> {complaint.address}</Card.Text>
-                              <Card.Text><b>City:</b> {complaint.city}</Card.Text>
-                              <Card.Text><b>State:</b> {complaint.state}</Card.Text>
-                              <Card.Text><b>Pincode:</b> {complaint.pincode}</Card.Text>
-                              <Card.Text><b>Comment:</b> {complaint.comment}</Card.Text>
-                              <Card.Text><b>Status:</b> {complaint._doc.status}</Card.Text>
+                              <Card.Title style={{ fontSize: '18px', color: '#333' }}>
+                                 <b>Name:</b> {complaint.name}
+                              </Card.Title>
+                              <Card.Text style={{ fontSize: '16px', color: '#555' }}>
+                                 <b>Address:</b> {complaint.address}
+                              </Card.Text>
+                              <Card.Text style={{ fontSize: '16px', color: '#555' }}>
+                                 <b>City:</b> {complaint.city}
+                              </Card.Text>
+                              <Card.Text style={{ fontSize: '16px', color: '#555' }}>
+                                 <b>State:</b> {complaint.state}
+                              </Card.Text>
+                              <Card.Text style={{ fontSize: '16px', color: '#555' }}>
+                                 <b>Pincode:</b> {complaint.pincode}
+                              </Card.Text>
+                              <Card.Text style={{ fontSize: '16px', color: '#555' }}>
+                                 <b>Comment:</b> {complaint.comment}
+                              </Card.Text>
+                              <Card.Text style={{ fontSize: '16px', color: '#555' }}>
+                                 <b>Status:</b> {complaint._doc.status}
+                              </Card.Text>
 
                               {complaint.status !== 'completed' && (
-                                 <Button onClick={() => handleStatusChange(complaint._doc.complaintId)} variant="primary">
+                                 <Button
+                                    onClick={() => handleStatusChange(complaint._doc.complaintId)}
+                                    variant="primary"
+                                    style={{ fontSize: '16px' }}
+                                 >
                                     Status Change
                                  </Button>
                               )}
-                              <Button onClick={() => handleToggle(complaint._doc.complaintId)}
+                              <Button
+                                 onClick={() => handleToggle(complaint._doc.complaintId)}
                                  aria-controls={`collapse-${complaint._doc.complaintId}`}
-                                 aria-expanded={!open} className='mx-3' variant="primary">
+                                 aria-expanded={!open}
+                                 className="mx-3"
+                                 variant="primary"
+                                 style={{ fontSize: '16px' }}
+                              >
                                  Message
                               </Button>
                               <div>
                                  <Collapse in={!open} dimension="width">
                                     <div id="example-collapse-text">
                                        <Card body style={{ width: '250px', marginTop: '12px' }}>
-                                          <ChatWindow key={complaint._doc.complaintId} complaintId={complaint._doc.complaintId} name={userName} />
+                                          <ChatWindow
+                                             key={complaint._doc.complaintId}
+                                             complaintId={complaint._doc.complaintId}
+                                             name={userName}
+                                          />
                                        </Card>
                                     </div>
                                  </Collapse>
                               </div>
-
                            </Card.Body>
                         </Card>
                      );
                   })
                ) : (
                   <Alert variant="info">
-                     <Alert.Heading>No complaints to show</Alert.Heading>
+                     <Alert.Heading style={{ fontSize: '20px', color: '#007bff' }}>
+                        No complaints to show
+                     </Alert.Heading>
                   </Alert>
                )}
             </div>
          </div>
-         <Footer style={style}/>
+         <Footer style={style} />
       </>
    );
 };
 
 export default AgentHome;
-
-
-

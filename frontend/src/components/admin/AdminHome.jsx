@@ -12,9 +12,7 @@ import AgentInfo from './AgentInfo';
 const AdminHome = () => {
    const navigate = useNavigate();
    const [activeComponent, setActiveComponent] = useState('dashboard');
-
    const [userName, setUserName] = useState('');
-
 
    useEffect(() => {
       const getData = async () => {
@@ -33,8 +31,6 @@ const AdminHome = () => {
       getData();
    }, [navigate]);
 
-
-
    const handleNavLinkClick = (componentName) => {
       setActiveComponent(componentName);
    };
@@ -48,7 +44,7 @@ const AdminHome = () => {
       <>
          <Navbar className="text-white" bg="dark" expand="lg">
             <Container fluid>
-               <Navbar.Brand className="text-white" href="#">
+               <Navbar.Brand className="text-white" href="#" style={{ fontSize: '20px', color: '#ff6347' }}>
                   Hi Admin {userName}
                </Navbar.Brand>
                <Navbar.Toggle aria-controls="navbarScroll" />
@@ -57,39 +53,38 @@ const AdminHome = () => {
                      <NavLink
                         className={`nav-link text-light ${activeComponent === 'dashboard' ? 'active' : ''}`}
                         onClick={() => handleNavLinkClick('dashboard')}
+                        style={{ fontSize: '18px', color: '#ffffff' }}
                      >
                         Dashboard
                      </NavLink>
                      <NavLink
                         className={`nav-link text-light ${activeComponent === 'UserInfo' ? 'active' : ''}`}
                         onClick={() => handleNavLinkClick('UserInfo')}
+                        style={{ fontSize: '18px', color: '#ffffff' }}
                      >
                         User
                      </NavLink>
                      <NavLink
                         className={`nav-link text-light ${activeComponent === 'Agent' ? 'active' : ''}`}
                         onClick={() => handleNavLinkClick('Agent')}
+                        style={{ fontSize: '18px', color: '#ffffff' }}
                      >
                         Agent
                      </NavLink>
                   </Nav>
-                  <Button onClick={LogOut} variant="outline-danger">
+                  <Button onClick={LogOut} variant="outline-danger" style={{ fontSize: '16px', marginLeft: '10px' }}>
                      Log out
                   </Button>
                </Navbar.Collapse>
             </Container>
          </Navbar>
-         <div className="content">
+         <div className="content" style={{ padding: '20px', fontSize: '16px', color: '#333' }}>
             {activeComponent === 'Agent' ? <AgentInfo /> : null}
             {activeComponent === 'dashboard' ? <AccordionAdmin /> : null}
             {activeComponent === 'UserInfo' ? <UserInfo /> : null}
          </div>
       </>
-   )
-
-
+   );
 };
 
 export default AdminHome;
-
-
