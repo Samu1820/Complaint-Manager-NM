@@ -31,7 +31,7 @@ Follow these steps to set up the project locally:
 
 ### 2. Navigate into the project directory
 ```bash
-cd complaint-Manager-NM
+cd Complaint-Manager-NM
 ```
 
 ### 3. Install dependencies
